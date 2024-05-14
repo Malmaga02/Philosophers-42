@@ -19,7 +19,7 @@ void	do_action(t_philo *philo)
 	sleeping(philo);
 	thinking(philo);
 	pthread_mutex_lock(&philo->mutex_philo);
-	if (&philo->room_ptr->death == 1 
+	if (philo->room_ptr->death == 1 
 		|| &philo->room_ptr->must_eat == &philo->eat_count)
 	{
 		

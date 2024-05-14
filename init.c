@@ -71,7 +71,7 @@ int	init_philos(t_room *pRoom)
 		pRoom->philo[i].philo_index = i + 1;
 		pRoom->philo[i].last_meal = 0;
 		pRoom->philo[i].room_ptr = pRoom;
-		assign_fork(pRoom, i);
+		assign_forks(pRoom, i);
 		check = pthread_create(&pRoom->philo->id, NULL, philo_routine, &pRoom->philo[i]);
 		if (check != 0)
 			return (print_error(THREAD_ERROR), 0);
@@ -99,4 +99,5 @@ int	init(t_room *room, int ac, char **av)
 		free(room->philo);
 		return (0);
 	}
+	return (1);
 }

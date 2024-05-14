@@ -20,11 +20,11 @@ int	destroy_forks(t_room *room)
 	return (1);
 }
 
-void    free_all(t_room *room)
+void	free_all(t_room *room)
 {
-    pthread_mutex_destroy(&room->print);
+	pthread_mutex_destroy(&room->print);
 	pthread_mutex_destroy(&room->mutex_room);
-    destroy_forks(room);
+	destroy_forks(room);
 	free(room->forks);
 	free(room->philo);
 }

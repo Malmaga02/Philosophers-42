@@ -40,6 +40,7 @@ typedef enum	e_error
 	ROOM_INIT
 }	t_error;
 
+typedef struct	s_room t_room;
 
 typedef struct	s_philo
 {
@@ -74,12 +75,13 @@ typedef struct	s_room
 // Destroy
 
 int		destroy_forks(t_room *room);
-void    free_all(t_room *room);
+void	free_all(t_room *room);
 
 // Init
 
-void	init_room(t_room *pRoom, int ac, char **av);
-void	init_philos(t_room *pRoom);
+int		assign_forks(t_room *pRoom, int i);
+int		init_room(t_room *pRoom, int ac, char **av);
+int		init_philos(t_room *pRoom);
 int		init(t_room *room, int ac, char **av);
 
 // Routine
@@ -99,7 +101,7 @@ void	death(t_philo *philo);
 
 int		ft_atoi(char *s);
 long	get_time(t_philo *philo);
-int		get_milliseconds(void);
+long	get_milliseconds(void);
 int		parse_args(int ac, char **av);
 int		print_action(t_action action_type, t_philo *philo);
 int		print_error(t_error error_type);

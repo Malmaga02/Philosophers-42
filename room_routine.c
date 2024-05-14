@@ -20,6 +20,7 @@ int	check_philos(t_room *room)
 		}
 		i++;
 	}
+	return (1);
 }
 
 void	room_routine(t_room *room)
@@ -31,7 +32,7 @@ void	room_routine(t_room *room)
 	must_eat = room->must_eat;
 	while (42)
 	{
-		if (!check_philos(room));
+		if (!check_philos(room))
 			break ;
 		pthread_mutex_lock(&room->philo[i].mutex_philo);
 		if (room->philo[i].eat_count == must_eat)
@@ -41,6 +42,4 @@ void	room_routine(t_room *room)
 		}
 		pthread_mutex_unlock(&room->philo[i].mutex_philo);
 	}
-	while ()
-
 }

@@ -75,18 +75,18 @@ int	print_action(t_action action_type, t_philo *philo)
 	long time;
 
 	time = get_time(philo);
-	if (!check_print)
+	if (!check_print(philo))
 		return (1);
 	if (action_type == EATING)
-		printf("%i, Philo %i is eating.\n", time, philo->philo_index);
+		printf("%li, Philo %i is eating.\n", time, philo->philo_index);
 	else if (action_type == SLEEPING)
-		printf("%i, Philo %i is sleeping.\n", time, philo->philo_index);
+		printf("%li, Philo %i is sleeping.\n", time, philo->philo_index);
 	else if (action_type == THINKING)
-		printf("%i, Philo %i is thinking.\n", time, philo->philo_index);
+		printf("%li, Philo %i is thinking.\n", time, philo->philo_index);
 	else if (action_type == DEAD)
-		printf("%i, Philo %i died.\n", time, philo->philo_index);
+		printf("%li, Philo %i died.\n", time, philo->philo_index);
 	else if (action_type == TOOK_FORK)
-		printf("%i, Philo %i took a fork.\n", time, philo->philo_index);
+		printf("%li, Philo %i took a fork.\n", time, philo->philo_index);
 	return (0);
 }
 
@@ -108,7 +108,7 @@ int	print_error(t_error error_type)
 int	check_print(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->mutex_philo);
-	if (&philo->room_ptr->death == 1
+	if (philo->room_ptr->death == 1
 		|| &philo->room_ptr->must_eat == &philo->eat_count)
 	{
 		pthread_mutex_unlock(&philo->mutex_philo);
