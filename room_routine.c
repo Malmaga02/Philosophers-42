@@ -41,4 +41,6 @@ void	room_routine(t_room *room)
 		}
 		pthread_mutex_unlock(&room->philo[i].mutex_philo);
 	}
+	while ()
+
 }

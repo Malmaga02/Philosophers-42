@@ -24,7 +24,7 @@ int	main(int ac, char **av)
 	if (!init(&room, ac, av))
 		return(0);
 	room_routine(&room);
-	
+	free_all(&room)
 
 }
 
