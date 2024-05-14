@@ -6,7 +6,7 @@
 /*   By: chsassi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 17:28:03 by chsassi           #+#    #+#             */
-/*   Updated: 2024/05/06 17:28:07 by chsassi          ###   ########.fr       */
+/*   Updated: 2024/05/14 20:27:17 by chsassi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,8 @@ int	init_philos(t_room *pRoom)
 		pRoom->philo[i].last_meal = 0;
 		pRoom->philo[i].room_ptr = pRoom;
 		assign_forks(pRoom, i);
-		pthread_create(&pRoom->philo->id, NULL, philo_routine, &pRoom->philo[i]);
+		pthread_create(&pRoom->philo->id, NULL, \
+			philo_routine, &pRoom->philo[i]);
 		i++;
 		len--;
 	}

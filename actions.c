@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   actions.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: chsassi <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/05/14 20:27:16 by chsassi           #+#    #+#             */
+/*   Updated: 2024/05/14 20:27:17 by chsassi          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo.h"
 
 void	took_fork(t_philo *philo)
@@ -9,7 +21,6 @@ void	took_fork(t_philo *philo)
 
 void	eating(t_philo *philo)
 {
-	
 	pthread_mutex_lock(&philo->mutex_philo);
 	philo->last_meal = get_milliseconds();
 	philo->eat_count++;

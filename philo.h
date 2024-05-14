@@ -21,7 +21,7 @@
 # include <pthread.h>
 # include <sys/time.h>
 
-typedef enum	e_action
+typedef enum e_action
 {
 	TOOK_FORK,
 	EATING,
@@ -30,7 +30,7 @@ typedef enum	e_action
 	DEAD
 }	t_action;
 
-typedef enum	e_error
+typedef enum e_error
 {
 	INVALID_PARSING,
 	INVALID_ARGS,
@@ -40,9 +40,9 @@ typedef enum	e_error
 	ROOM_INIT
 }	t_error;
 
-typedef struct	s_room t_room;
+typedef struct s_room	t_room;
 
-typedef struct	s_philo
+typedef struct s_philo
 {
 	pthread_t		id;
 	int				philo_index;
@@ -56,7 +56,7 @@ typedef struct	s_philo
 	t_room			*room_ptr;
 }	t_philo;
 
-typedef struct	s_room
+typedef struct s_room
 {
 	int				philos_nbr;
 	int				time_to_die;
