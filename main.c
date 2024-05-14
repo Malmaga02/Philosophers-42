@@ -21,9 +21,25 @@ int	main(int ac, char **av)
 	room = (t_room){0};
 	if (!parse_args(ac, av))
 		return (0);
-	init_room(&room, ac, av);
-	//init_philos(philo, ac, av);
+	if (!init(&room, ac, av))
+		return(0);
+	room_routine(&room);
+	
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // typedef struct x
 // {

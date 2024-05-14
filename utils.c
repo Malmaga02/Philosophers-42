@@ -60,7 +60,7 @@ int	parse_args(int ac, char **av)
 	return (1);
 }
 
-long	get_ms(void)
+long	get_milliseconds(void)
 {
 	long 			n;
 	struct timeval	tv;
@@ -74,7 +74,9 @@ int	print_action(t_action action_type, t_philo *philo)
 {
 	long time;
 
-	time = philo->time_action - philo->room_ptr->time;
+	time = get_time(philo);
+	if (!check_print)
+		return (1);
 	if (action_type == EATING)
 		printf("%i, Philo %i is eating.\n", time, philo->philo_index);
 	else if (action_type == SLEEPING)
@@ -101,4 +103,25 @@ int	print_error(t_error error_type)
 	else if (error_type == THREAD_ERROR)
 		printf("Error in thread creation.\n");
 	return (0);
+}
+
+int	check_print(t_philo *philo)
+{
+	pthread_mutex_lock(&philo->mutex_philo);
+	if (&philo->room_ptr->death == 1
+		|| &philo->room_ptr->must_eat == &philo->eat_count)
+	{
+		pthread_mutex_unlock(&philo->mutex_philo);
+		return (0);
+	}
+	pthread_mutex_unlock(&philo->mutex_philo);
+	return (1);
+}
+
+long	get_time(t_philo *philo)
+{
+	long	time;
+
+	time = get_milliseconds() - philo->room_ptr->start_time;
+	return (time);
 }
