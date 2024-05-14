@@ -3,10 +3,12 @@
 int	check_philos(t_room *room)
 {
 	int	philos_nbr;
+	int	must_eat;
 	int	i;
 
-	i = 0;
 	philos_nbr = room->philos_nbr;
+	must_eat = 0;
+	i = 0;
 	while (philos_nbr)
 	{
 		pthread_mutex_lock(&room->philo[i].mutex_philo);
@@ -18,6 +20,13 @@ int	check_philos(t_room *room)
 			death(&room->philo[i]);
 			return (0);
 		}
+		pthread_mutex_lock(&room->philo[i].mutex_philo);
+		if (room->philo[i].eat_count == must_eat)
+		{
+			pthread_mutex_unlock(&room->philo[i].mutex_philo);
+			break ;
+		}
+		pthread_mutex_unlock(&room->philo[i].mutex_philo);
 		i++;
 	}
 	return (1);
@@ -34,12 +43,5 @@ void	room_routine(t_room *room)
 	{
 		if (!check_philos(room))
 			break ;
-		pthread_mutex_lock(&room->philo[i].mutex_philo);
-		if (room->philo[i].eat_count == must_eat)
-		{
-			pthread_mutex_unlock(&room->philo[i].mutex_philo);
-			break ;
-		}
-		pthread_mutex_unlock(&room->philo[i].mutex_philo);
 	}
 }

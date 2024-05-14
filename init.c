@@ -58,12 +58,10 @@ int	assign_forks(t_room *pRoom, int i)
 
 int	init_philos(t_room *pRoom)
 {
-	int		len;
-	int		check;
 	int		i;
+	int		len;
 
 	i = 0;
-	check = 0;
 	len = pRoom->philos_nbr;
 	pRoom->start_time = get_milliseconds();
 	while (len > 0)
@@ -72,9 +70,7 @@ int	init_philos(t_room *pRoom)
 		pRoom->philo[i].last_meal = 0;
 		pRoom->philo[i].room_ptr = pRoom;
 		assign_forks(pRoom, i);
-		check = pthread_create(&pRoom->philo->id, NULL, philo_routine, &pRoom->philo[i]);
-		if (check != 0)
-			return (print_error(THREAD_ERROR), 0);
+		pthread_create(&pRoom->philo->id, NULL, philo_routine, &pRoom->philo[i]);
 		i++;
 		len--;
 	}
