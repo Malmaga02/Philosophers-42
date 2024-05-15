@@ -79,7 +79,7 @@ void	free_all(t_room *room);
 
 // Init
 
-int		assign_forks(t_room *pRoom, int i);
+int		assign_forks(t_room *pRoom);
 int		init_room(t_room *pRoom, int ac, char **av);
 int		init_philos(t_room *pRoom);
 int		init(t_room *room, int ac, char **av);

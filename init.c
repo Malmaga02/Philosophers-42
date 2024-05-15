@@ -34,23 +34,23 @@ int	init_room(t_room *pRoom, int ac, char **av)
 	return (1);
 }
 
-int	assign_forks(t_room *pRoom, int i)
+int	assign_forks(t_room *pRoom)
 {
+	int	i;
 	int	last;
 
+	i = -1;
 	last = pRoom->philos_nbr;
-	while (last >= 0)
+	while (++i < last)
 	{
 		pthread_mutex_init(&pRoom->forks[i], NULL);
-		if (i == 0)
-		{
-			pRoom->philo[i].r_fork = i;
-			pRoom->philo[i].l_fork = last - 1;
-			return (1);
-		}
 		pRoom->philo[i].r_fork = i;
-		pRoom->philo[i].l_fork = i - 1;
-		last--;
+		pRoom->philo[i].l_fork = (i - 1 + last) % last;
+		if (pRoom->philos_nbr == 1)
+		{
+			pRoom->philo[i].r_fork = -1;
+			break ;
+		}
 		i++;
 	}
 	return (1);
@@ -64,13 +64,13 @@ int	init_philos(t_room *pRoom)
 	i = 0;
 	len = pRoom->philos_nbr;
 	pRoom->start_time = get_milliseconds();
+	assign_forks(pRoom);
 	while (len > 0)
 	{
 		pRoom->philo[i].philo_index = i + 1;
 		pRoom->philo[i].last_meal = 0;
 		pRoom->philo[i].room_ptr = pRoom;
-		assign_forks(pRoom, i);
-		pthread_create(&pRoom->philo->id, NULL, \
+		pthread_create(&pRoom->philo[i].id, NULL, \
 			philo_routine, &pRoom->philo[i]);
 		i++;
 		len--;
