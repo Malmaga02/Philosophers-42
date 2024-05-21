@@ -26,7 +26,8 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	$(CC) $(CFLAGS) -I. $(OBJ) -o $(NAME)
-	@echo "$(GREEN)	PHILOSOPHERS COMPILED!$(RESET)"
+	@echo "$(GREEN)	Philo has been compiled. $(RESET)"
+	@echo "$(BLUE)	Run ./philo with [nbr_of_philos] [time_to_die] [time_to_eat] [time_to_sleep] and, if you want, [must_eat]. $(RESET)"
 
 RM = rm -f
 
@@ -35,5 +36,6 @@ clean:
 
 fclean: clean
 	$(RM) $(NAME)
+	@echo "$(BLUE)	 Philo has been removed. $(RESET)"
 
 re: fclean all
